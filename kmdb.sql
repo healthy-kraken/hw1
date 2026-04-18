@@ -29,6 +29,63 @@
 -- * Note: The "guest" user role represents the experience prior to logging-in
 --   to an app and typically does not have a corresponding database table.
 
+'''
+Sprint 1 - Table Creation for Requirement/Assumptions & User Stories
+
+'''
+.mode column
+.headers off
+
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS studios;
+DROP TABLE IF EXISTS roster;
+DROP TABLE IF EXISTS actors;
+DROP TABLE IF EXISTS networks;
+DROP TABLE IF EXISTS agents; 
+
+CREATE TABLE movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    year_released INTEGER,
+    mpaa_rating TEXT, 
+    studio_id INTEGER
+);
+
+CREATE TABLE studios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT 
+);
+
+CREATE TABLE roster (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    movie_id INTEGER,
+    actor_id INTEGER,
+    character_name TEXT
+);
+
+CREATE TABLE actors (
+    id INTEGER PRIMARY KEY AUTOCREMENT,
+    first_name TEXT,
+    last_name TEXT
+);
+
+CREATE TABLE networks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actor_id INTEGER,
+    agent_id INTEGER
+);
+
+CREATE TABLE agents (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT,
+    last_name TEXT
+    
+);
+
+'''
+'''
+
+
 -- Deliverables
 -- 
 -- There are five deliverables for this assignment, all delivered as part of
@@ -43,6 +100,14 @@
 -- - Selection of data, so that something similar to the sample "report"
 --   below can be achieved.
 
+'''
+SPRINT 2: Creating ERD File and image upload
+'''
+
+
+
+'''
+'''
 -- Rubric
 --
 -- 1. Domain model / ERD - 6 points
@@ -90,8 +155,8 @@
 -- Successful sample output is as shown:
 
 -- Turns column mode on but headers off
-.mode column
-.headers off
+-- .mode column
+-- .headers off
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
@@ -159,3 +224,4 @@
 -- Represented by agent
 -- ====================
 -- Christian Bale
+
