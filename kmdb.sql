@@ -29,12 +29,19 @@
 -- * Note: The "guest" user role represents the experience prior to logging-in
 --   to an app and typically does not have a corresponding database table.
 
-'''
-Sprint 1 - Table Creation for Requirement/Assumptions & User Stories
+/*
+SPRINT 0: Creating ERD File and image upload
+*/
 
-'''
-.mode column
-.headers off
+-- Image uploaded
+
+
+
+/*
+Sprint 1 - Table Creation for Requirement/Assumptions & User Stories
+*/
+
+
 
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS studios;
@@ -42,6 +49,9 @@ DROP TABLE IF EXISTS roster;
 DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS networks;
 DROP TABLE IF EXISTS agents; 
+
+.mode column
+.headers off
 
 CREATE TABLE movies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -64,7 +74,7 @@ CREATE TABLE roster (
 );
 
 CREATE TABLE actors (
-    id INTEGER PRIMARY KEY AUTOCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name TEXT,
     last_name TEXT
 );
@@ -82,8 +92,8 @@ CREATE TABLE agents (
     
 );
 
-'''
-'''
+/*
+*/
 
 
 -- Deliverables
@@ -100,14 +110,7 @@ CREATE TABLE agents (
 -- - Selection of data, so that something similar to the sample "report"
 --   below can be achieved.
 
-'''
-SPRINT 2: Creating ERD File and image upload
-'''
 
-
-
-'''
-'''
 -- Rubric
 --
 -- 1. Domain model / ERD - 6 points
@@ -128,6 +131,88 @@ SPRINT 2: Creating ERD File and image upload
 -- - Use of the `model_id` naming convention for foreign key columns
 -- 3. Insertion of data (INSERT statements) - 4 points
 -- - Insert data into all the tables you've created.
+
+/*
+SPRINT 2: Populating Tables
+*/
+
+INSERT INTO studios(name)
+VALUES (
+'Warner Bros. Pictures');
+
+INSERT INTO movies(title, year_released, mpaa_rating, studio_id)
+VALUES 
+('Batman Begins',2005,'PG-13',1),
+('The Dark Knight',2008,'PG-13',1),
+('The Dark Knight Rises',2012,'PG-13',1)
+;
+
+INSERT INTO actors(first_name, last_name)
+VALUES 
+('Christian','Bale'),
+-- across all 3 batmans
+('Heath', 'Ledger'),
+-- only in The Dark Knight 
+('Aaron','Eckhart'),
+-- only in Batman Begins
+('Tom','Hardy'),
+-- only in The Dark Knight Rises
+('Liam','Neeson'),
+('Katie','Holmes'),
+('Gary','Oldman'),
+('Michael','Caine'),
+('Maggie','Gyllenhaal'),
+('Gary','Oldman'),
+('Josephy','Gordon-Levitt'),
+('Anne','Hathaway')
+;
+
+INSERT INTO roster(movie_id, actor_id, character_name)
+VALUES 
+--- Cast: Batman Begins
+(1,1,'Bruce Wayne'),
+(1,10,'Commissioner Gordon'),
+(1,8,'Alfred'),
+(1,5,"Ra's Al Ghul"),
+(1,6,'Rachel Dawes'),
+
+-- Cast: Dark Knight
+(2,1,'Bruce Wayne'),
+(2,2,'The Joker'),
+(2,8,'Alfred'),
+(2,9,'Rachel Dawes'),
+(2,3,'Harvey Dent'),
+
+-- Cast: Dark Knight Rises
+(3,1,'Bruce Wayne'),
+(3,10,'Commissioner Gordon'),
+(3,4,'Bane'),
+(3,11,'John Blake'),
+(3,12,'Selina Kyle')
+;
+
+INSERT INTO agents(first_name, last_name)
+VALUES 
+('Patrick','Whitesell'),
+-- Christian Bale's agent
+('Steve','Alexander'),
+-- Heath Ledger's agent
+('Bradie','Shawn'),
+-- Aaron Eckhart's agent
+('Lindy','King')
+-- Tom Hardy's agent
+;
+
+INSERT INTO networks(actor_id, agent_id)
+VALUES 
+(1,1),
+(2,2),
+(3,3),
+(4,4)
+;
+
+/**/
+
 -- 4. Modification of existing data (UPDATE statements) - 2 points
 -- - Assign an agent as the representative of a single actor.
 -- 5. "The report" (SELECT statements) - 4 points
@@ -142,6 +227,8 @@ SPRINT 2: Creating ERD File and image upload
 --   the skills and strategies covered in class. Alternate solutions which do not demonstrate
 --   an understanding of the approaches used in class will receive significant deductions.
 --   Any concern should be raised with faculty prior to assignment due date.
+
+
 
 -- Submission
 -- 
@@ -169,9 +256,19 @@ SPRINT 2: Creating ERD File and image upload
 -- TODO!
 
 -- Prints a header for the movies output
-.print "Movies"
-.print "======"
 .print ""
+.print "Movies"
+.print "====="
+.print ""
+
+/*
+SPRINT 3: Reading Table
+*/
+
+--- Reading List of Movies with their studio
+SELECT movies.title, movies.year_released, movies.mpaa_rating, studios.name FROM movies
+INNER JOIN studios ON movies.studio_id = studios.id;
+/**/
 
 -- ***TODO!***
 -- The SQL statement for the movies output goes here.
@@ -186,7 +283,7 @@ SPRINT 2: Creating ERD File and image upload
 -- Prints a header for the cast output
 .print ""
 .print "Top Cast"
-.print "========"
+.print "====="
 .print ""
 
 -- ***TODO!***
@@ -214,7 +311,7 @@ SPRINT 2: Creating ERD File and image upload
 -- Prints a header for the agent's list of represented actors
 .print ""
 .print "Represented by agent"
-.print "===================="
+.print "====="
 .print ""
 
 -- ***TODO!***
