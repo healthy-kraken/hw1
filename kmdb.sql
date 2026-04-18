@@ -291,6 +291,8 @@ SPRINT 4: Reading Table -- Reading Casting List
 SELECT movies.title, actors.first_name, actors.last_name, roster.character_name FROM movies
 INNER JOIN roster ON roster.movie_id = movies.id 
 INNER JOIN actors ON actors.id = roster.actor_id;
+
+UPDATE networks SET agent_id = 1 WHERE actor_id = 1;
 /**/
 
 -- Example output:
